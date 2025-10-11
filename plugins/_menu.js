@@ -7,128 +7,71 @@ const {
   getPlatform,
   bot,
   lang,
-} = require('../lib/')
-bot(
-  {
-    pattern: 'help ?(.*)',
-    dontAddCommandList: true,
-  },
-  async (message, match, ctx) => {
-    const sorted = ctx.commands
-      .slice()
-      .sort((a, b) => (a.name && b.name ? a.name.localeCompare(b.name) : 0))
+} = require('../lib/');
 
-    const [date, time] = getDate()
-
-    const CMD_HELP = [
-      lang.plugins.menu.help.format(
-        ctx.PREFIX,
-        message.pushName,
-        time,
-        date.toLocaleString('en', { weekday: 'long' }),
-        date.toLocaleDateString('hi'),
-        ctx.VERSION,
-        ctx.pluginsCount,
-        getRam(),
-        getUptime('t'),
-        getPlatform()
-      ),
-      '╭────────────────',
-    ]
-
-    sorted.forEach((command, i) => {
-      if (!command.dontAddCommandList && command.pattern !== undefined) {
-        CMD_HELP.push(
-          `│ ${i + 1} ${addSpace(i + 1, sorted.length)}${textToStylist(
-            command.name.toUpperCase(),
-            'mono'
-          )}`
-        )
-      }
-    })
-
-    CMD_HELP.push('╰────────────────')
-
-    return await message.send(CMD_HELP.join('\n'))
-  }
-)
-
-bot(
-  {
-    pattern: 'list ?(.*)',
-    dontAddCommandList: true,
-  },
-  async (message, match, ctx) => {
-    const sorted = ctx.commands
-      .slice()
-      .sort((a, b) => (a.name && b.name ? a.name.localeCompare(b.name) : 0))
-
-    const commandList = sorted
-      .filter((command) => !command.dontAddCommandList && command.pattern !== undefined)
-      .map((command) => `- *${command.name}*\n${command.desc}\n`)
-      .join('\n')
-
-    await message.send(commandList)
-  }
-)
 bot(
   {
     pattern: 'menu ?(.*)',
     dontAddCommandList: true,
   },
   async (message, match, ctx) => {
-    const commands = {}
+    const commands = {};
 
+    // Group commands by their type
     ctx.commands.forEach((command) => {
       if (!command.dontAddCommandList && command.pattern !== undefined) {
-        let cmdType = command.type.toLowerCase()
-        if (!commands[cmdType]) commands[cmdType] = []
+        const type = command.type?.toLowerCase() || 'general';
+        if (!commands[type]) commands[type] = [];
 
-        let isDisabled = command.active === false
-        let cmd = command.name.trim()
-        commands[cmdType].push(isDisabled ? `${cmd} [disabled]` : cmd)
+        const name = command.name?.trim();
+        const isDisabled = command.active === false;
+        commands[type].push(isDisabled ? `${name} [disabled]` : name);
       }
-    })
+    });
 
-    const sortedCommandKeys = Object.keys(commands).sort()
+    const sortedTypes = Object.keys(commands).sort();
 
-    const [date, time] = getDate()
-    let msg = lang.plugins.menu.menu.format(
-      ctx.PREFIX,
-      message.pushName,
-      time,
-      date.toLocaleString('en', { weekday: 'long' }),
-      date.toLocaleDateString('hi'),
-      ctx.VERSION,
-      ctx.pluginsCount,
-      getRam(),
-      getUptime('t'),
-      getPlatform()
-    )
+    // Metadata
+    const [date, time] = getDate();
+    const weekday = date.toLocaleString('en', { weekday: 'long' });
+    const dateStr = date.toLocaleDateString('hi');
 
-    msg += '\n'
+    let msg = `╭━━━〔 *${ctx.PREFIX} MENU PANEL* 〕━━⬣
+┃ 👤 *User:* ${message.pushName}
+┃ 🕒 *Time:* ${time}
+┃ 📅 *Date:* ${weekday}, ${dateStr}
+┃ ⚙️ *Version:* ${ctx.VERSION}
+┃ 🧩 *Plugins:* ${ctx.pluginsCount}
+┃ 📦 *RAM:* ${getRam()}
+┃ ⏱ *Uptime:* ${getUptime('t')}
+┃ 💻 *Platform:* ${getPlatform()}
+╰━━━━━━━━━━━━━━━━━━━━⬣\n`;
 
+    // Show specific category if matched
     if (match && commands[match]) {
-      msg += ` ╭─❏ ${textToStylist(match.toLowerCase(), 'smallcaps')} ❏\n`
+      msg += `\n╭─❏ *${textToStylist(match.toUpperCase(), 'smallcaps')}*\n`;
       commands[match]
         .sort((a, b) => a.localeCompare(b))
-        .forEach((plugin) => {
-          msg += ` │ ${textToStylist(plugin.toUpperCase(), 'mono')}\n`
-        })
-      msg += ` ╰─────────────────`
-      return await message.send(msg)
+        .forEach((cmd) => {
+          msg += `│ ✥ ${textToStylist(cmd.toUpperCase(), 'mono')}\n`;
+        });
+      msg += '╰────────────────────\n';
+      return await message.send(msg);
     }
 
-    for (const command of sortedCommandKeys) {
-      msg += ` ╭─❏ ${textToStylist(command.toLowerCase(), 'smallcaps')} ❏\n`
-      commands[command]
+    // Display all categories
+    for (const type of sortedTypes) {
+      msg += `\n╭─❏ *${textToStylist(type.toUpperCase(), 'smallcaps')}*\n`;
+      commands[type]
         .sort((a, b) => a.localeCompare(b))
-        .forEach((plugin) => {
-          msg += ` │ ${textToStylist(plugin.toUpperCase(), 'mono')}\n`
-        })
-      msg += ` ╰─────────────────\n`
+        .forEach((cmd) => {
+          msg += `│ ✥ ${textToStylist(cmd.toUpperCase(), 'mono')}\n`;
+        });
+      msg += '╰────────────────────\n';
     }
 
-    await message.send(msg.trim())
+    msg += '\n🌟 Type `.menu groupname` to view only that category.\n'
+
+    await message.send(msg.trim());
   }
-)
+);
