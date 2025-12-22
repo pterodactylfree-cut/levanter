@@ -43,28 +43,48 @@
       "desc": "عرض رسالة حالة البوت على قيد الحياة مع نص مخصص اختياري."
     },
     "antifake": {
-      "example": "*حالة مكافحة الأرقام المزيفة:* {0}\n\n> *أمثلة الاستخدام:*\n- *antifake list* - عرض رموز البلدان\n- *antifake !91,1* - السماح/عدم السماح برموز بلدان محددة\n- *antifake on | off* - تمكين/تعطيل مكافحة الأرقام المزيفة",
+      "example": "*حالة مكافحة الأرقام المزيفة:* {0}\n\n> *أمثلة الاستخدام:*\n- *antifake list* - عرض رموز البلدان\n- *antifake add 91,1* - إضافة رموز بلدان إلى القائمة المسموح بها\n- *antifake remove 91,1* - إزالة رموز بلدان من القائمة المسموح بها\n- *antifake on | off* - تمكين/تعطيل مكافحة الأرقام المزيفة",
       "desc": "تمكين أو تكوين مكافحة الأرقام المزيفة",
       "not": "لا توجد رموز دول لعرضها.",
       "status": "مكافحة الأرقام المزيفة الآن *{0}*.",
-      "update": "> تم تحديث مكافحة الأرقام المزيفة\n*مسموح به:* {0}\n*غير مسموح به:* {1}"
+      "update": "> تم تحديث مكافحة الأرقام المزيفة\n*مسموح به:* {0}\n*غير مسموح به:* {1}",
+      "allow_prompt": "*Please provide country codes to allow (whitelist mode)*\n_Example: antifake allow 1,91_",
+      "disallow_prompt": "*Please provide country codes to disallow (blacklist mode)*\n_Example: antifake disallow 92,93_",
+      "remove_prompt": "*Please provide country codes to remove*\n_Example: antifake remove 91_",
+      "mode_conflict_whitelist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Blacklist Mode. Use `antifake clear` first to switch to Whitelist Mode._",
+      "mode_conflict_blacklist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Whitelist Mode. Use `antifake clear` first to switch to Blacklist Mode._",
+      "whitelist_success": "*✅ Allowed country codes (Whitelist Mode):*\n{0}\n\n_These codes will be allowed, all others will be blocked._",
+      "blacklist_success": "*🚫 Disallowed country codes (Blacklist Mode):*\n{0}\n\n_These codes will be blocked, all others will be allowed._",
+      "removed": "*Removed country codes:*\n{0}",
+      "cleared": "*🗑️ Antifake list cleared and disabled*",
+      "whitelist_mode": "🟢 Whitelist Mode (Allow Only)",
+      "blacklist_mode": "🔴 Blacklist Mode (Block Only)",
+      "enabled": "enabled",
+      "disabled": "disabled"
     },
     "antilink": {
       "desc": "تمكين أو تكوين مكافحة الروابط",
       "disable": "_مكافحة الروابط معطلة بالفعل._",
-      "antilink_notset": "لم يتم تكوين مكافحة الروابط.",
+      "antilink_notset": "تم تكوين مكافحة الروابط لحظر جميع الروابط (لم يتم تعيين قائمة URL). استخدم 'antilink allow' أو 'antilink disallow' لتكوين عناوين URL محددة.",
       "status": "مكافحة الروابط الآن *{0}*.",
       "info": "> حالة مكافحة الروابط: {0}\n*عناوين URL المسموح بها:* {1}\n *الإجراء :* {2}",
       "action_invalid": "*تم تحديد إجراء غير صالح.*",
       "action_update": "تم تحديث إجراء مكافحة الروابط إلى: *{0}*",
       "update": "> تم تحديث مكافحة الروابط\n*مسموح به:* {0}\n*غير مسموح به:* {1}",
-      "example": "حالة مكافحة الروابط: *{0}*\n\n> أمثلة الاستخدام:\n- antilink info - عرض الإعدادات الحالية\n- antilink whatsapp.com - السماح بعناوين URL محددة\n- antilink on | off - تمكين/تعطيل مكافحة الروابط\n- antilink action/<kick | warn | null> - تعيين إجراء للرابط"
+      "example": "حالة مكافحة الروابط: *{0}*\n\n> أمثلة الاستخدام:\n- antilink list - عرض الإعدادات الحالية\n- antilink allow whatsapp.com - السماح بعناوين URL محددة\n- antilink disallow facebook.com - عدم السماح بعناوين URL محددة\n- antilink clear allow - Clear allowed URLs\n- antilink clear disallow - Clear disallowed URLs\n- antilink on | off - تمكين/تعطيل مكافحة الروابط\n- antilink kick | warn | null - تعيين إجراء للرابط"
     },
     "antiword": {
       "desc": "تصفية كلمات محددة في دردشة المجموعة",
-      "example": "حالة مكافحة الكلمات: {0}\n> *أمثلة الاستخدام:*\n- antiword action/<kick | warn | null>* - تعيين إجراء للانتهاكات\n- antiword on | off - تمكين/تعطيل تصفية الكلمات\n- setvar ANTIWORDS:word1,word2,... - تعريف الكلمات المحظورة",
+      "example": "حالة مكافحة الكلمات: {0}\n> *أمثلة الاستخدام:*\n- antiword kick | warn | null - تعيين إجراء للانتهاكات\n- antiword on | off - تمكين/تعطيل تصفية الكلمات\n- antiword add word1,word2 - إضافة كلمات إلى قائمة الحظر\n- antiword remove word1,word2 - إزالة كلمات من قائمة الحظر\n- antiword list - عرض الكلمات المحظورة",
       "action_update": "تم تحديث إجراء مكافحة الكلمات إلى: *{0}*",
-      "status": "مكافحة الكلمات الآن *{0}*."
+      "status": "مكافحة الكلمات الآن *{0}*.",
+      "add_prompt": "*الرجاء تقديم كلمات للإضافة.*",
+      "added": "*تمت إضافة الكلمات:*\n{0}",
+      "remove_prompt": "*الرجاء تقديم كلمات للإزالة.*",
+      "removed": "*تمت إزالة الكلمات:*\n{0}",
+      "no_words": "*لم يتم تعيين أي كلمات.*",
+      "info": "*حالة مكافحة الكلمات:* {0}\n*الإجراء:* {1}\n\n*الكلمات:* {2}",
+      "cleared": "*تم مسح قائمة مكافحة الكلمات.*"
     },
     "apk": {
       "desc": "تنزيل APK من APKMirror",
@@ -158,15 +178,17 @@
     },
     "greetings": {
       "welcome_desc": "إرسال رسالة ترحيب للأعضاء الجدد",
-      "welcome_example": "الترحيب حالياً {0}\n\nلمزيد من التفاصيل، قم بزيارة: https://levanter-delta.vercel.app/",
-      "welcome_enable": "_تم تمكين الترحيب الآن_",
-      "welcome_disable": "_تم تعطيل الترحيب الآن_",
+      "welcome_example": "الترحيب حالياً *{0}*\n\n> *أمثلة الاستخدام:*\n- welcome مرحباً &mention! أهلاً بك في &name - تعيين رسالة الترحيب\n- welcome on | off - تفعيل/تعطيل\n- welcome delete - حذف الرسالة\n\n> *العناصر المتغيرة:*\n- &mention - ذكر العضو الجديد\n- &name - اسم المجموعة\n- &desc - وصف المجموعة\n- &size - عدد الأعضاء\n- &pp - صورة العضو الشخصية\n\n> *الوسائط:* رد على صورة/فيديو أو أدخل رابط في الرسالة\n\nللمزيد: https://levanter-delta.vercel.app/",
+      "welcome_enable": "_تم تفعيل الترحيب_",
+      "welcome_disable": "_تم تعطيل الترحيب_",
       "welcome_delete": "_تم حذف رسالة الترحيب_",
+      "welcome_not_set": "_يرجى تعيين رسالة ترحيب أولاً!_\n\n> *مثال:*\nwelcome مرحباً &mention! أهلاً بك في &name\n\nثم استخدم: welcome on",
       "goodbye_desc": "إرسال رسالة وداع للأعضاء",
-      "goodbye_example": "الوداع حالياً {0}\n\nلمزيد من التفاصيل، قم بزيارة: https://levanter-delta.vercel.app/",
-      "goodbye_enable": "_تم تمكين الوداع الآن_",
-      "goodbye_disable": "_تم تعطيل الوداع الآن_",
-      "goodbye_delete": "_تم حذف رسالة الوداع_"
+      "goodbye_example": "الوداع حالياً *{0}*\n\n> *أمثلة الاستخدام:*\n- goodbye وداعاً &mention! نراك لاحقاً - تعيين رسالة الوداع\n- goodbye on | off - تفعيل/تعطيل\n- goodbye delete - حذف الرسالة\n\n> *العناصر المتغيرة:*\n- &mention - ذكر العضو المغادر\n- &name - اسم المجموعة\n- &desc - وصف المجموعة\n- &size - عدد الأعضاء\n- &pp - صورة العضو الشخصية\n\n> *الوسائط:* رد على صورة/فيديو أو أدخل رابط في الرسالة\n\nللمزيد: https://levanter-delta.vercel.app/",
+      "goodbye_enable": "_تم تفعيل الوداع_",
+      "goodbye_disable": "_تم تعطيل الوداع_",
+      "goodbye_delete": "_تم حذف رسالة الوداع_",
+      "goodbye_not_set": "_يرجى تعيين رسالة وداع أولاً!_\n\n> *مثال:*\ngoodbye وداعاً &mention! شكراً لوجودك معنا\n\nثم استخدم: goodbye on"
     },
     "groq": {
       "example": "*مثال:* groq مرحباً\n\nيمكنك اختياريًا تعيين متغيرات البيئة التالية:\n- GROQ_API_KEY\n- GROQ_MODEL\n- GROQ_SYSTEM_MSG\n\nلمزيد من التفاصيل، قم بزيارة: https://console.groq.com/keys",
@@ -427,19 +449,32 @@
       "usage": "> مثال:\n- zushi ping, sticker\n- لتعيين جميع الأوامر، اكتب 'list' ثم الرد بالرسالة المنسوخة (مثال: zushi copied_message).",
       "desc": "يسمح لك بتمكين أوامر محددة للاستخدام من قبل الآخرين في الدردشة.",
       "already_set": "{0} مكون بالفعل.",
-      "allowed": "*الأوامر المسموح بها لـ* @{0}\n{1}"
+      "allowed": "*الأوامر المسموح بها لـ* @{0}\n{1}",
+      "no_input": "⚠️ الرجاء توفير أسماء الأوامر\n\n📝 أمثلة:\n  • .zushi song video sticker\n  • .zushi img trt translate\n\n💡 أضف أوامر متعددة مفصولة بمسافات",
+      "duplicates": "❌ الأوامر المسموح بها بالفعل: {0}\n\n📋 الأوامر المسموح بها الحالية ({1} إجمالي):\n{2}\n\n💡 استخدم .yami لرؤية جميع الأوامر المسموح بها\n💡 استخدم .ope لإزالة الأوامر",
+      "invalid": "⚠️ لم يتم العثور على أوامر صالحة\n\nتم تخطي غير صالح: {0}\n\n💡 استخدم .help لرؤية الأوامر المتاحة",
+      "error": "❌ خطأ: {0}",
+      "success": "✅ تمت إضافة {0} أمر{1} بنجاح:\n{2}\n\n📊 الإجمالي المسموح به: {0} أمر{1} لـ @{3}\n\n💡 يمكن للمستخدمين الآن استخدام هذه الأوامر"
     },
     "yami": {
       "usage": "ببساطة استخدم: yami",
       "desc": "يعرض قائمة الأوامر المسموح بها حاليًا في هذه الدردشة.",
-      "not_set": "لم يتم تعيين أي أوامر مسموح بها بعد."
+      "not_set": "لم يتم تعيين أي أوامر مسموح بها بعد.",
+      "no_commands": "📋 لم يتم العثور على أوامر مسموح بها\n\n💡 استخدم .zushi لإضافة الأوامر\n📝 مثال: .zushi song video sticker",
+      "list": "📋 الأوامر المسموح بها لـ @{0}:\n\n{1}\n\n📊 الإجمالي: {2} أمر{3}\n\n💡 إزالة باستخدام: .ope <أسماء الأوامر>\n💡 إزالة الكل: .ope all"
     },
     "ope": {
       "usage": "مثال: ope ping, sticker OR ope all",
       "desc": "يحذف أو يلغي تعيين الأوامر المسموح بها المحددة.",
       "not_found": "لم يتم العثور على أوامر مسموح بها لـ {0}.",
       "all_removed": "تمت إزالة جميع الأوامر المسموح بها.",
-      "removed": "*الأوامر التي تمت إزالتها لـ* @{0}\n{1}"
+      "removed": "*الأوامر التي تمت إزالتها لـ* @{0}\n{1}",
+      "no_input": "⚠️ الرجاء توفير أسماء الأوامر للإزالة\n\n📝 أمثلة:\n  • .ope song video\n  • .ope all (يزيل كل شيء)\n\n💡 استخدم .yami لرؤية الأوامر المسموح بها",
+      "not_found_list": "❌ لم يتم العثور على أمر{0}: {1}{2}\n\n💡 استخدم .yami لرؤية جميع الأوامر المسموح بها\n📝 مثال: .ope song video",
+      "error": "❌ خطأ: {0}",
+      "no_commands": "⚠️ لم يتم العثور على أوامر لهذا المستخدم/المجموعة\n\n💡 استخدم .zushi لإضافة الأوامر أولاً",
+      "all_success": "✅ تمت إزالة جميع الأوامر\n\n💡 استخدم .zushi لإضافة أوامر جديدة",
+      "success": "✅ تمت إزالة {0} أمر{1}:\n{2}\n\n📊 لـ: @{3}\n\n💡 استخدم .yami لرؤية الأوامر المتبقية\n💡 استخدم .ope all لإزالة كل شيء"
     },
     "pdm": {
       "usage": "الاستخدام: pdm on | off",
@@ -565,10 +600,20 @@
       "deleted": "تم حذف الجدولة."
     },
     "antispam": {
-      "usage": "الاستخدام: antispam on | off",
-      "desc": "تمكين أو تعطيل ميزة مكافحة الرسائل غير المرغوب فيها للمجموعة.",
-      "activated": "تم تفعيل مكافحة الرسائل غير المرغوب فيها.",
-      "deactivated": "تم إلغاء تفعيل مكافحة الرسائل غير المرغوب فيها."
+      "desc": "Manage antispam protection with configurable levels",
+      "usage": "Use: antispam <on/off/low/medium/high/warn/delete/kick/info>",
+      "disabled_status": "📊 *Antispam Status*\n\n🔴 Disabled\n\nUse `antispam on` to enable protection",
+      "info_status": "📊 *Antispam Status*\n\n{status}\nLevel: {level}\nAction: {action}",
+      "deactivated": "⚠️ *Antispam Protection Disabled*\n\nSpam detection is now OFF",
+      "activated": "✅ *Antispam Protection Enabled*\n\nLevel: {level} ({description})\nAction: {action}",
+      "level_set": "✅ *Level Changed*\n\nNew level: {level}",
+      "action_set": "✅ *Action Changed*\n\nSpammers will be: {action_desc}",
+      "invalid_level": "❌ Invalid level. Use: low, medium, high",
+      "help": "📖 *Antispam Help*\n\n*Commands:*\n• `antispam on` - Enable (default: medium)\n• `antispam off` - Disable\n• `antispam <low/medium/high>` - Change sensitivity\n• `antispam <warn/delete/kick>` - Change action\n• `antispam info` - View current settings\n\n*Levels:*\n• Low - Relaxed (active groups)\n• Medium - Balanced (recommended)\n• High - Strict (problem groups)",
+      "spam_warning": "⚠️ @{mention} Stop spamming!",
+      "action_warn": "warned (not kicked)",
+      "action_delete": "messages deleted only",
+      "action_kick": "kicked from group"
     },
     "sticker": {
       "desc": "تحويل صورة أو فيديو إلى ملصق. الرد على رسالة صورة أو فيديو لإنشاء ملصق.",
@@ -716,7 +761,7 @@
       "updated": "تم تحديث البوت بنجاح!"
     },
     "antigm": {
-      "usage": "> الاستخدام:\n- antigm <on|off> — تمكين أو تعطيل منع الإشارة إلى المجموعة\n- antigm <delete|warn|kick> — تعيين إجراء عند ذكر شخص للمجموعة\n- antigm ignore <jid,jid,jid,...> — تجاهل منع الإشارة إلى المجموعة من مجموعات محددة",
+      "usage": "> الاستخدام:\n- antigm on | off — تمكين أو تعطيل منع الإشارة إلى المجموعة\n- antigm delete | warn | kick — تعيين إجراء عند ذكر شخص للمجموعة\n- antigm ignore jid,jid,... — تجاهل منع الإشارة إلى المجموعة من مجموعات محددة",
       "action": "تم تحديث الإجراء: ستؤدي إشارات المجموعة الآن إلى *{0}*.",
       "filter": "تم تحديث معرفات JID التي سيتم تجاهلها لمنع الإشارة إلى المجموعة.",
       "enabled": "تم تمكين منع الإشارة إلى المجموعة.",

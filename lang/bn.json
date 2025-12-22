@@ -43,28 +43,41 @@
       "desc": "বটের জীবিত স্ট্যাটাস মেসেজ দেখান, ঐচ্ছিক কাস্টম টেক্সট সহ।"
     },
     "antifake": {
-      "example": "Antifake স্ট্যাটাস: {0}\n\n> ব্যবহারের উদাহরণ:\n- antifake list - দেশের কোড দেখুন\n- antifake !91,1 - নির্দিষ্ট দেশের কোড অনুমতি দিন/অনুমতি দিন না\n- antifake on | off - Antifake চালু/বন্ধ করুন",
+      "example": "Antifake স্ট্যাটাস: {0}\n\n> ব্যবহারের উদাহরণ:\n- *antifake list* - দেশের কোড দেখুন\n- *antifake add 91,1* - অনুমোদিত তালিকায় দেশের কোড যোগ করুন\n- *antifake remove 91,1* - অনুমোদিত তালিকা থেকে দেশের কোড সরান\n- *antifake on | off* - Antifake চালু/বন্ধ করুন",
       "desc": "ফেক নাম্বার বিরোধী সক্ষম বা কনফিগার করুন",
       "not": "কোন দেশের কোড তালিকাভুক্ত নেই।",
-      "status": "Antifake এখন {0}।",
-      "update": "> Antifake আপডেট করা হয়েছে\n*অনুমতি দেওয়া:* {0}\n*অনুমতি দেওয়া হয়নি:* {1}"
+      "status": "Antifake এখন *{0}*।",
+      "update": "> Antifake আপডেট করা হয়েছে\n*অনুমতি দেওয়া:* {0}\n*অনুমতি দেওয়া হয়নি:* {1}",
+      "allow_prompt": "*Please provide country codes to allow (whitelist mode)*\n_Example: antifake allow 1,91_",
+      "disallow_prompt": "*Please provide country codes to disallow (blacklist mode)*\n_Example: antifake disallow 92,93_",
+      "remove_prompt": "*Please provide country codes to remove*\n_Example: antifake remove 91_",
+      "mode_conflict_whitelist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Blacklist Mode. Use `antifake clear` first to switch to Whitelist Mode._",
+      "mode_conflict_blacklist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Whitelist Mode. Use `antifake clear` first to switch to Blacklist Mode._",
+      "whitelist_success": "*✅ Allowed country codes (Whitelist Mode):*\n{0}\n\n_These codes will be allowed, all others will be blocked._",
+      "blacklist_success": "*🚫 Disallowed country codes (Blacklist Mode):*\n{0}\n\n_These codes will be blocked, all others will be allowed._",
+      "removed": "*Removed country codes:*\n{0}",
+      "cleared": "*🗑️ Antifake list cleared and disabled*",
+      "whitelist_mode": "🟢 Whitelist Mode (Allow Only)",
+      "blacklist_mode": "🔴 Blacklist Mode (Block Only)",
+      "enabled": "enabled",
+      "disabled": "disabled"
     },
     "antilink": {
       "desc": "লিঙ্ক বিরোধী সক্ষম বা কনফিগার করুন",
-      "disable": "Antilink ইতিমধ্যে বন্ধ আছে।",
-      "antilink_notset": "Antilink কনফিগার করা হয়নি।",
-      "status": "Antilink এখন {0}।",
-      "info": "> Antilink স্ট্যাটাস: {0}\n*অনুমতি দেওয়া URL:* {1}\n অ্যাকশন : {2}",
-      "action_invalid": "অবৈধ অ্যাকশন নির্দিষ্ট করা হয়েছে।",
-      "action_update": "Antilink অ্যাকশন আপডেট করা হয়েছে: {0}",
+      "disable": "_Antilink ইতিমধ্যে বন্ধ আছে।_",
+      "antilink_notset": "Antilink সমস্ত লিঙ্ক ব্লক করার জন্য কনফিগার করা হয়েছে (কোনো URL তালিকা সেট করা নেই)। নির্দিষ্ট URL কনফিগার করতে 'antilink allow' বা 'antilink disallow' ব্যবহার করুন।",
+      "status": "Antilink এখন *{0}*।",
+      "info": "> Antilink স্ট্যাটাস: {0}\n*অনুমতি দেওয়া URL:* {1}\n *অ্যাকশন :* {2}",
+      "action_invalid": "*অবৈধ অ্যাকশন নির্দিষ্ট করা হয়েছে।*",
+      "action_update": "Antilink অ্যাকশন আপডেট করা হয়েছে: *{0}*",
       "update": "> Antilink আপডেট করা হয়েছে\n*অনুমতি দেওয়া:* {0}\n*অনুমতি দেওয়া হয়নি:* {1}",
-      "example": "Antilink স্ট্যাটাস: {0}\n\n> ব্যবহারের উদাহরণ:\n- antilink info - বর্তমান সেটিংস দেখুন\n- antilink whatsapp.com - নির্দিষ্ট URL অনুমতি দিন\n- antilink on | off - Antilink চালু/বন্ধ করুন\n- antilink action/<kick | warn | null> - লিঙ্কের জন্য অ্যাকশন সেট করুন"
+      "example": "Antilink স্ট্যাটাস: *{0}*\n\n> ব্যবহারের উদাহরণ:\n- antilink list - বর্তমান সেটিংস দেখুন\n- antilink allow whatsapp.com - নির্দিষ্ট URL অনুমতি দিন\n- antilink disallow facebook.com - নির্দিষ্ট URL নিষিদ্ধ করুন\n- antilink clear allow - Clear allowed URLs\n- antilink clear disallow - Clear disallowed URLs\n- antilink on | off - Antilink চালু/বন্ধ করুন\n- antilink kick | warn | null - লিঙ্কের জন্য অ্যাকশন সেট করুন"
     },
     "antiword": {
       "desc": "গ্রুপ চ্যাটে নির্দিষ্ট শব্দ ফিল্টার করুন",
-      "example": "AntiWord স্ট্যাটাস: {0}\n> ব্যবহারের উদাহরণ:\n- antiword action/<kick | warn | null>* - লঙ্ঘনের জন্য অ্যাকশন সেট করুন\n- antiword on | off - শব্দ ফিল্টারিং চালু/বন্ধ করুন\n- setvar ANTIWORDS:word1,word2,... - ব্লক করা শব্দ নির্ধারণ করুন",
-      "action_update": "AntiWord অ্যাকশন আপডেট করা হয়েছে: {0}",
-      "status": "AntiWord এখন {0}।"
+      "example": "AntiWord স্ট্যাটাস: {0}\n> *ব্যবহারের উদাহরণ:*\n- antiword kick | warn | null - লঙ্ঘনের জন্য অ্যাকশন সেট করুন\n- antiword on | off - শব্দ ফিল্টারিং চালু/বন্ধ করুন\n- antiword add word1,word2 - ব্লক তালিকায় শব্দ যোগ করুন\n- antiword remove word1,word2 - ব্লক তালিকা থেকে শব্দ সরান\n- antiword list - ব্লক করা শব্দ দেখুন",
+      "action_update": "AntiWord অ্যাকশন আপডেট করা হয়েছে: *{0}*",
+      "status": "AntiWord এখন *{0}*।"
     },
     "apk": {
       "desc": "APKMirror থেকে APK ডাউনলোড করুন",
@@ -157,16 +170,18 @@
       "delupdate": "গ্রিটিং মেসেজ ডিলিট করা হয়েছে।"
     },
     "greetings": {
-      "welcome_desc": "নতুন মেম্বারদের জন্য ওয়েলকাম মেসেজ পাঠান",
-      "welcome_example": "ওয়েলকাম বর্তমানে {0}\n\nআরো বিস্তারিত জানতে ভিজিট করুন: https://levanter-delta.vercel.app/",
-      "welcome_enable": "ওয়েলকাম এখন চালু করা হয়েছে",
-      "welcome_disable": "ওয়েলকাম এখন বন্ধ করা হয়েছে",
-      "welcome_delete": "ওয়েলকাম মেসেজ ডিলিট করা হয়েছে",
+      "welcome_desc": "নতুন মেম্বারদের জন্য ওয়েলকাম মেসেজ পাঠান",
+      "welcome_example": "ওয়েলকাম বর্তমানে *{0}*\n\n> *ব্যবহারের উদাহরণ:*\n- welcome হাই &mention! &name-এ স্বাগতম - মেসেজ সেট করুন\n- welcome on | off - চালু/বন্ধ করুন\n- welcome delete - মেসেজ ডিলিট করুন\n\n> *প্লেসহোল্ডার:*\n- &mention - নতুন মেম্বার উল্লেখ করুন\n- &name - গ্রুপের নাম\n- &desc - গ্রুপ বর্ণনা\n- &size - মেম্বার সংখ্যা\n- &pp - মেম্বারের প্রোফাইল পিকচার\n\n> *মিডিয়া:* ছবি/ভিডিওতে রিপ্লাই করুন অথবা মেসেজে URL যোগ করুন\n\nআরো বিস্তারিত জানতে ভিজিট করুন: https://levanter-delta.vercel.app/",
+      "welcome_enable": "ওয়েলকাম এখন চালু করা হয়েছে",
+      "welcome_disable": "ওয়েলকাম এখন বন্ধ করা হয়েছে",
+      "welcome_delete": "ওয়েলকাম মেসেজ ডিলিট করা হয়েছে",
+      "welcome_not_set": "_প্রথমে ওয়েলকাম মেসেজ সেট করুন!_\n\n> *উদাহরণ:*\nwelcome হাই &mention! &name-এ স্বাগতম\n\nতারপর ব্যবহার করুন: welcome on",
       "goodbye_desc": "মেম্বারদের জন্য গুডবাই মেসেজ পাঠান",
-      "goodbye_example": "গুডবাই বর্তমানে {0}\n\nআরো বিস্তারিত জানতে ভিজিট করুন: https://levanter-delta.vercel.app/",
-      "goodbye_enable": "গুডবাই এখন চালু করা হয়েছে",
-      "goodbye_disable": "গুডবাই এখন বন্ধ করা হয়েছে",
-      "goodbye_delete": "গুডবাই মেসেজ ডিলিট করা হয়েছে"
+      "goodbye_example": "গুডবাই বর্তমানে *{0}*\n\n> *ব্যবহারের উদাহরণ:*\n- goodbye বিদায় &mention! পরে দেখা হবে - মেসেজ সেট করুন\n- goodbye on | off - চালু/বন্ধ করুন\n- goodbye delete - মেসেজ ডিলিট করুন\n\n> *প্লেসহোল্ডার:*\n- &mention - চলে যাওয়া মেম্বার উল্লেখ করুন\n- &name - গ্রুপের নাম\n- &desc - গ্রুপ বর্ণনা\n- &size - মেম্বার সংখ্যা\n- &pp - মেম্বারের প্রোফাইল পিকচার\n\n> *মিডিয়া:* ছবি/ভিডিওতে রিপ্লাই করুন অথবা মেসেজে URL যোগ করুন\n\nআরো বিস্তারিত জানতে ভিজিট করুন: https://levanter-delta.vercel.app/",
+      "goodbye_enable": "গুডবাই এখন চালু করা হয়েছে",
+      "goodbye_disable": "গুডবাই এখন বন্ধ করা হয়েছে",
+      "goodbye_delete": "গুডবাই মেসেজ ডিলিট করা হয়েছে",
+      "goodbye_not_set": "_প্রথমে গুডবাই মেসেজ সেট করুন!_\n\n> *উদাহরণ:*\ngoodbye বিদায় &mention! আমাদের সাথে থাকার জন্য ধন্যবাদ\n\nতারপর ব্যবহার করুন: goodbye on"
     },
     "groq": {
       "example": "উদাহরণ: groq হাই\n\nআপনি ঐচ্ছিকভাবে নিম্নলিখিত এনভায়রনমেন্ট ভেরিয়েবল সেট করতে পারেন:\n- GROQ_API_KEY\n- GROQ_MODEL\n- GROQ_SYSTEM_MSG\n\nআরো বিস্তারিত জানতে ভিজিট করুন: https://console.groq.com/keys",
@@ -565,10 +580,20 @@
       "deleted": "সময়সূচী মুছে ফেলা হয়েছে।"
     },
     "antispam": {
-      "usage": "ব্যবহার: antispam on | off",
-      "desc": "গ্রুপের জন্য AntiSpam ফিচার সক্রিয় বা নিষ্ক্রিয় করুন।",
-      "activated": "AntiSpam সক্রিয় করা হয়েছে।",
-      "deactivated": "AntiSpam নিষ্ক্রিয় করা হয়েছে।"
+      "desc": "Manage antispam protection with configurable levels",
+      "usage": "Use: antispam <on/off/low/medium/high/warn/delete/kick/info>",
+      "disabled_status": "📊 *Antispam Status*\n\n🔴 Disabled\n\nUse `antispam on` to enable protection",
+      "info_status": "📊 *Antispam Status*\n\n{status}\nLevel: {level}\nAction: {action}",
+      "deactivated": "⚠️ *Antispam Protection Disabled*\n\nSpam detection is now OFF",
+      "activated": "✅ *Antispam Protection Enabled*\n\nLevel: {level} ({description})\nAction: {action}",
+      "level_set": "✅ *Level Changed*\n\nNew level: {level}",
+      "action_set": "✅ *Action Changed*\n\nSpammers will be: {action_desc}",
+      "invalid_level": "❌ Invalid level. Use: low, medium, high",
+      "help": "📖 *Antispam Help*\n\n*Commands:*\n• `antispam on` - Enable (default: medium)\n• `antispam off` - Disable\n• `antispam <low/medium/high>` - Change sensitivity\n• `antispam <warn/delete/kick>` - Change action\n• `antispam info` - View current settings\n\n*Levels:*\n• Low - Relaxed (active groups)\n• Medium - Balanced (recommended)\n• High - Strict (problem groups)",
+      "spam_warning": "⚠️ @{mention} Stop spamming!",
+      "action_warn": "warned (not kicked)",
+      "action_delete": "messages deleted only",
+      "action_kick": "kicked from group"
     },
     "sticker": {
       "desc": "একটি ছবি বা ভিডিওকে স্টিকার হিসেবে রূপান্তর করুন। একটি ছবি বা ভিডিও মেসেজ রিপ্লাই করুন স্টিকার তৈরি করতে।",
@@ -716,11 +741,11 @@
       "updated": "বট সফলভাবে আপডেট করা হয়েছে!"
     },
     "antigm": {
-      "usage": "> Usage:\n- antigm <on|off> — Enable or disable anti group mention\n- antigm <delete|warn|kick> — Set action when someone mentions the group\n- antigm ignore <jid,jid,jid,...> — Ignore anti group mention from specific groups",
-      "action": "Action updated: group mentions will now result in *{0}*.",
-      "filter": "Ignore JIDs updated for anti group mention.",
-      "enabled": "Anti group mention has been enabled.",
-      "disabled": "Anti group mention has been disabled."
+      "usage": "> ব্যবহার:\n- antigm on | off — গ্রুপ মেনশন বিরোধী চালু বা বন্ধ করুন\n- antigm delete | warn | kick — কেউ গ্রুপ মেনশন করলে অ্যাকশন সেট করুন\n- antigm ignore jid,jid,... — নির্দিষ্ট গ্রুপ থেকে গ্রুপ মেনশন বিরোধী উপেক্ষা করুন",
+      "action": "অ্যাকশন আপডেট করা হয়েছে: গ্রুপ মেনশন এখন *{0}* হবে।",
+      "filter": "গ্রুপ মেনশন বিরোধীর জন্য উপেক্ষা করা JID আপডেট করা হয়েছে।",
+      "enabled": "গ্রুপ মেনশন বিরোধী চালু করা হয়েছে।",
+      "disabled": "গ্রুপ মেনশন বিরোধী বন্ধ করা হয়েছে।"
     }
   }
 }

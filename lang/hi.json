@@ -43,28 +43,48 @@
       "desc": "Bot ka alive status message dikhao, aur agar chahe to custom text add karo."
     },
     "antifake": {
-      "example": "*Antifake Status:* {0}\n\n> *Istemal Ka Tarika:*\n- *antifake list* - Country codes dekho\n- *antifake !91,1* - Khaas country codes ko allow/notallow karo\n- *antifake on | off* - Antifake ko enable/disable karo",
+      "example": "*Antifake Status:* {0}\n\n> *Istemal Ka Tarika:*\n- *antifake list* - Country codes dekho\n- *antifake add 91,1* - Allowed list mein country codes add karo\n- *antifake remove 91,1* - Allowed list se country codes hatao\n- *antifake on | off* - Antifake ko enable/disable karo",
       "desc": "Anti-fake number ko enable ya configure karo",
       "not": "List karne ke liye koi country codes nahi hai.",
       "status": "Antifake ab *{0}* hai.",
-      "update": "> Antifake Update ho gaya\n*Allowed:* {0}\n*Not Allowed:* {1}"
+      "update": "> Antifake Update ho gaya\n*Allowed:* {0}\n*Not Allowed:* {1}",
+      "allow_prompt": "*Please provide country codes to allow (whitelist mode)*\n_Example: antifake allow 1,91_",
+      "disallow_prompt": "*Please provide country codes to disallow (blacklist mode)*\n_Example: antifake disallow 92,93_",
+      "remove_prompt": "*Please provide country codes to remove*\n_Example: antifake remove 91_",
+      "mode_conflict_whitelist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Blacklist Mode. Use `antifake clear` first to switch to Whitelist Mode._",
+      "mode_conflict_blacklist": "*⚠️ Cannot mix modes!*\n\n_You are currently in Whitelist Mode. Use `antifake clear` first to switch to Blacklist Mode._",
+      "whitelist_success": "*✅ Allowed country codes (Whitelist Mode):*\n{0}\n\n_These codes will be allowed, all others will be blocked._",
+      "blacklist_success": "*🚫 Disallowed country codes (Blacklist Mode):*\n{0}\n\n_These codes will be blocked, all others will be allowed._",
+      "removed": "*Removed country codes:*\n{0}",
+      "cleared": "*🗑️ Antifake list cleared and disabled*",
+      "whitelist_mode": "🟢 Whitelist Mode (Allow Only)",
+      "blacklist_mode": "🔴 Blacklist Mode (Block Only)",
+      "enabled": "enabled",
+      "disabled": "disabled"
     },
     "antilink": {
       "desc": "Anti-link ko enable ya configure karo",
       "disable": "_Antilink pehle se hi band hai._",
-      "antilink_notset": "Antilink configure nahi hui hai.",
+      "antilink_notset": "Antilink sabhi links ko block karne ke liye configure hai (koi URL list set nahi hai). Specific URLs configure karne ke liye 'antilink allow' ya 'antilink disallow' use karein.",
       "status": "Antilink ab *{0}* hai.",
       "info": "> Antilink Status: {0}\n*Allowed URLs:* {1}\n *Action :* {2}",
       "action_invalid": "*Galat action diya gaya hai.*",
       "action_update": "Antilink action update ho gaya: *{0}*",
       "update": "> Antilink Update ho gaya\n*Allowed:* {0}\n*Not Allowed:* {1}",
-      "example": "Antilink Status: *{0}*\n\n> Istemal Ka Tarika:\n- antilink info - Current settings dekho\n- antilink whatsapp.com - Khaas URLs ko allow karo\n- antilink on | off - Antilink ko enable/disable karo\n- antilink action/<kick | warn | null> - Link ke liye action set karo"
+      "example": "Antilink Status: *{0}*\n\n> Istemal Ka Tarika:\n- antilink list - Current settings dekho\n- antilink allow whatsapp.com - Khaas URLs ko allow karo\n- antilink disallow facebook.com - Khaas URLs ko disallow karo\n- antilink clear allow - Clear allowed URLs\n- antilink clear disallow - Clear disallowed URLs\n- antilink on | off - Antilink ko enable/disable karo\n- antilink kick | warn | null - Link ke liye action set karo"
     },
     "antiword": {
       "desc": "Group chat mein khaas words ko filter karo",
-      "example": "AntiWord Status: {0}\n> *Istemal Ka Tarika:*\n- antiword action/<kick | warn | null>* - Violations ke liye action set karo\n- antiword on | off - Word filtering ko enable/disable karo\n- setvar ANTIWORDS:word1,word2,... - Blocked words define karo",
+      "example": "AntiWord Status: {0}\n> *Istemal Ka Tarika:*\n- antiword kick | warn | null - Violations ke liye action set karo\n- antiword on | off - Word filtering ko enable/disable karo\n- antiword add word1,word2 - Block list mein words add karo\n- antiword remove word1,word2 - Block list se words hatao\n- antiword list - Blocked words dekho",
       "action_update": "AntiWord action update ho gaya: *{0}*",
-      "status": "AntiWord ab *{0}* hai."
+      "status": "AntiWord ab *{0}* hai.",
+      "add_prompt": "*Kripya add karne ke liye words provide karein.*",
+      "added": "*Words add ho gaye:*\n{0}",
+      "remove_prompt": "*Kripya remove karne ke liye words provide karein.*",
+      "removed": "*Words remove ho gaye:*\n{0}",
+      "no_words": "*Koi words set nahi hai.*",
+      "info": "*AntiWord Status:* {0}\n*Action:* {1}\n\n*Words:* {2}",
+      "cleared": "*AntiWord list clear ho gayi.*"
     },
     "apk": {
       "desc": "APKMirror se APK download karo",
@@ -157,16 +177,18 @@
       "delupdate": "Greeting message delete ho gaya."
     },
     "greetings": {
-      "welcome_desc": "New members ko welcome message bhejo",
-      "welcome_example": "Welcome abhi {0} hai\n\nZyada details ke liye, yahan jayein: https://levanter-delta.vercel.app/",
-      "welcome_enable": "_Welcome ab enable ho gaya_",
-      "welcome_disable": "_Welcome ab disable ho gaya_",
-      "welcome_delete": "_Welcome message delete ho gaya_",
-      "goodbye_desc": "Members ko goodbye message bhejo",
-      "goodbye_example": "Goodbye abhi {0} hai\n\nZyada details ke liye, yahan jayein: https://levanter-delta.vercel.app/",
-      "goodbye_enable": "_Goodbye ab enable ho gaya_",
-      "goodbye_disable": "_Goodbye ab disable ho gaya_",
-      "goodbye_delete": "_Goodbye message delete ho gaya_"
+      "welcome_desc": "नए सदस्यों को स्वागत संदेश भेजें",
+      "welcome_example": "Welcome abhi *{0}* hai\n\n> *उदाहरण:*\n- welcome नमस्ते &mention! &name में आपका स्वागत है - संदेश सेट करें\n- welcome on | off - चालू/बंद करें\n- welcome delete - संदेश हटाएं\n\n> *प्लेसहोल्डर:*\n- &mention - नए सदस्य को मेंशन करें\n- &name - ग्रुप का नाम\n- &desc - ग्रुप विवरण\n- &size - सदस्यों की संख्या\n- &pp - सदस्य की प्रोफाइल फोटो\n\n> *मीडिया:* इमेज/वीडियो पर रिप्लाई करें या संदेश में URL शामिल करें\n\nज्यादा जानकारी: https://levanter-delta.vercel.app/",
+      "welcome_enable": "_Welcome चालू हो गया_",
+      "welcome_disable": "_Welcome बंद हो गया_",
+      "welcome_delete": "_Welcome संदेश हटा दिया गया_",
+      "welcome_not_set": "_पहले welcome संदेश सेट करें!_\n\n> *उदाहरण:*\nwelcome नमस्ते &mention! &name में आपका स्वागत है\n\nफिर उपयोग करें: welcome on",
+      "goodbye_desc": "सदस्यों को विदाई संदेश भेजें",
+      "goodbye_example": "Goodbye abhi *{0}* hai\n\n> *उदाहरण:*\n- goodbye अलविदा &mention! फिर मिलेंगे - संदेश सेट करें\n- goodbye on | off - चालू/बंद करें\n- goodbye delete - संदेश हटाएं\n\n> *प्लेसहोल्डर:*\n- &mention - जाने वाले सदस्य को मेंशन करें\n- &name - ग्रुप का नाम\n- &desc - ग्रुप विवरण\n- &size - सदस्यों की संख्या\n- &pp - सदस्य की प्रोफाइल फोटो\n\n> *मीडिया:* इमेज/वीडियो पर रिप्लाई करें या संदेश में URL शामिल करें\n\nज्यादा जानकारी: https://levanter-delta.vercel.app/",
+      "goodbye_enable": "_Goodbye चालू हो गया_",
+      "goodbye_disable": "_Goodbye बंद हो गया_",
+      "goodbye_delete": "_Goodbye संदेश हटा दिया गया_",
+      "goodbye_not_set": "_पहले goodbye संदेश सेट करें!_\n\n> *उदाहरण:*\ngoodbye अलविदा &mention! हमारे साथ रहने के लिए धन्यवाद\n\nफिर उपयोग करें: goodbye on"
     },
     "groq": {
       "example": "*Example:* groq Hi\n\nAap optionally ye environment variables set kar sakte hain:\n- GROQ_API_KEY\n- GROQ_MODEL\n- GROQ_SYSTEM_MSG\n\nZyada details ke liye, yahan jayein: https://console.groq.com/keys",
@@ -565,10 +587,20 @@
       "deleted": "Schedule delete ho gaya."
     },
     "antispam": {
-      "usage": "Usage: antispam on | off",
-      "desc": "Group ke liye AntiSpam feature enable ya disable karein.",
-      "activated": "AntiSpam activate ho gaya.",
-      "deactivated": "AntiSpam deactivate ho gaya."
+      "desc": "Manage antispam protection with configurable levels",
+      "usage": "Use: antispam <on/off/low/medium/high/warn/delete/kick/info>",
+      "disabled_status": "📊 *Antispam Status*\n\n🔴 Disabled\n\nUse `antispam on` to enable protection",
+      "info_status": "📊 *Antispam Status*\n\n{status}\nLevel: {level}\nAction: {action}",
+      "deactivated": "⚠️ *Antispam Protection Disabled*\n\nSpam detection is now OFF",
+      "activated": "✅ *Antispam Protection Enabled*\n\nLevel: {level} ({description})\nAction: {action}",
+      "level_set": "✅ *Level Changed*\n\nNew level: {level}",
+      "action_set": "✅ *Action Changed*\n\nSpammers will be: {action_desc}",
+      "invalid_level": "❌ Invalid level. Use: low, medium, high",
+      "help": "📖 *Antispam Help*\n\n*Commands:*\n• `antispam on` - Enable (default: medium)\n• `antispam off` - Disable\n• `antispam <low/medium/high>` - Change sensitivity\n• `antispam <warn/delete/kick>` - Change action\n• `antispam info` - View current settings\n\n*Levels:*\n• Low - Relaxed (active groups)\n• Medium - Balanced (recommended)\n• High - Strict (problem groups)",
+      "spam_warning": "⚠️ @{mention} Stop spamming!",
+      "action_warn": "warned (not kicked)",
+      "action_delete": "messages deleted only",
+      "action_kick": "kicked from group"
     },
     "sticker": {
       "desc": "Image ya video ko sticker mein convert karein. Sticker banane ke liye kisi image ya video message par reply karein.",
@@ -716,11 +748,11 @@
       "updated": "Bot successfully update ho gaya!"
     },
     "antigm": {
-      "usage": "> Usage:\n- antigm <on|off> — Enable or disable anti group mention\n- antigm <delete|warn|kick> — Set action when someone mentions the group\n- antigm ignore <jid,jid,jid,...> — Ignore anti group mention from specific groups",
-      "action": "Action updated: group mentions will now result in *{0}*.",
-      "filter": "Ignore JIDs updated for anti group mention.",
-      "enabled": "Anti group mention has been enabled.",
-      "disabled": "Anti group mention has been disabled."
+      "usage": "> Istemal:\n- antigm on | off — Anti group mention ko enable ya disable karo\n- antigm delete | warn | kick — Jab koi group mention kare to action set karo\n- antigm ignore jid,jid,... — Specific groups se anti group mention ignore karo",
+      "action": "Action update ho gaya: group mentions ab *{0}* karenge.",
+      "filter": "Anti group mention ke liye ignored JIDs update ho gaye.",
+      "enabled": "Anti group mention enable ho gaya hai.",
+      "disabled": "Anti group mention disable ho gaya hai."
     }
   }
 }
